@@ -21,49 +21,60 @@ const Register = () => {
     };
 
     return (
-        <div className="flex justify-center items-center h-[80vh] relative">
-            <div className="absolute top-1/2 right-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -z-10 animate-blob animation-delay-4000"></div>
-            <div className="absolute top-1/3 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -z-10 animate-blob"></div>
+        <div className="flex justify-center items-center min-h-[calc(100vh-80px)] relative overflow-hidden">
+            {/* Animated Background */}
+            <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-32 left-1/2 w-96 h-96 bg-red-400 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
 
-            <form onSubmit={handleSubmit} className="glass-panel p-10 rounded-2xl w-full max-w-md mx-4">
-                <h2 className="text-3xl font-extrabold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Create Account</h2>
-                {error && <p className="bg-red-50 text-red-500 p-3 rounded mb-6 text-sm border border-red-100">{error}</p>}
-                <div className="mb-5">
-                    <label className="block mb-2 text-sm font-semibold text-gray-700">Full Name</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                        className="input-field"
-                        placeholder="John Doe"
-                    />
+            <form onSubmit={handleSubmit} className="glass-panel p-10 rounded-3xl w-full max-w-md mx-4 relative z-10 animate-fade-in-up">
+                <div className="mb-10 text-center">
+                    <h2 className="text-4xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600">Create Account</h2>
+                    <p className="text-gray-500">Join us to start planning events.</p>
                 </div>
-                <div className="mb-5">
-                    <label className="block mb-2 text-sm font-semibold text-gray-700">Email Address</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        className="input-field"
-                        placeholder="you@example.com"
-                    />
+
+                {error && <div className="bg-red-50 text-red-500 p-4 rounded-xl mb-6 text-sm border border-red-100 flex items-center gap-2 animate-fade-in-up">⚠️ {error}</div>}
+
+                <div className="space-y-5">
+                    <div>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Full Name</label>
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                            className="input-field"
+                            placeholder="John Doe"
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            className="input-field"
+                            placeholder="you@example.com"
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Password</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className="input-field"
+                            placeholder="••••••••"
+                        />
+                    </div>
                 </div>
-                <div className="mb-8">
-                    <label className="block mb-2 text-sm font-semibold text-gray-700">Password</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="input-field"
-                        placeholder="••••••••"
-                    />
-                </div>
-                <button type="submit" className="btn-primary w-full shadow-lg shadow-blue-500/30">Sign Up</button>
-                <p className="mt-6 text-center text-sm text-gray-600">
-                    Already have an account? <Link to="/login" className="text-blue-600 font-bold hover:underline">Log In</Link>
+
+                <button type="submit" className="btn-primary w-full mt-8 shadow-xl shadow-pink-500/20 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 py-4 text-lg">Sign Up</button>
+
+                <p className="mt-8 text-center text-sm text-gray-600">
+                    Already have an account? <Link to="/login" className="text-pink-600 font-bold hover:text-pink-700 transition-colors">Log In</Link>
                 </p>
             </form>
         </div>

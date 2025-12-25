@@ -91,86 +91,113 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto px-4 py-8">
-            <div className="flex justify-between items-center mb-10">
-                <h1 className="text-3xl font-bold text-gray-800">
-                    Hello, <span className="text-blue-600">{user && user.name}</span> 👋
-                </h1>
+        <div className="max-w-7xl mx-auto px-4 py-8 relative min-h-screen">
+            {/* Animated Background */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none fixed">
+                <div className="absolute top-10 left-10 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+                <div className="absolute top-10 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-10 left-1/3 w-96 h-96 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 animate-fade-in-up gap-4">
+                <div>
+                    <h1 className="text-4xl font-extrabold text-gray-800 tracking-tight">
+                        Hello, <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{user && user.name}</span> 👋
+                    </h1>
+                    <p className="text-gray-500 mt-2 text-lg">Manage your events and polls from here.</p>
+                </div>
                 <button
-                    className="btn-primary flex items-center gap-2"
+                    className="btn-primary flex items-center gap-2 shadow-xl shadow-blue-500/20"
                     onClick={() => setShowCreate(!showCreate)}
                 >
-                    {showCreate ? 'Close Form' : '+ New Event'}
+                    <span className="text-xl">{showCreate ? '×' : '+'}</span> {showCreate ? 'Close Form' : 'Create Event'}
                 </button>
             </div>
 
             {showCreate && (
-                <div className="mb-12 glass-panel p-8 rounded-2xl animate-fade-in-down">
-                    <h2 className="text-2xl font-bold mb-6 text-gray-800">Create New Event</h2>
-                    <form onSubmit={handleCreateEvent} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="col-span-1 md:col-span-2">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Event Title</label>
-                            <input className="input-field" value={title} onChange={e => setTitle(e.target.value)} required placeholder="e.g. Birthday Party" />
-                        </div>
-                        <div className="col-span-1 md:col-span-2">
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                            <textarea className="input-field min-h-[100px]" value={description} onChange={e => setDescription(e.target.value)} placeholder="What's the plan?" />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Possible Dates (YYYY-MM-DD)</label>
-                            <input className="input-field" placeholder="2024-12-25, 2024-12-26" onChange={e => setDateOptions(e.target.value.split(','))} />
-                            <p className="text-xs text-gray-500 mt-1">Comma separated</p>
-                        </div>
+                <div className="mb-16 glass-panel p-8 rounded-3xl animate-fade-in-up border border-blue-100 shadow-2xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full -mr-32 -mt-32 opacity-50 pointer-events-none"></div>
+                    <div className="relative z-10">
+                        <h2 className="text-2xl font-bold mb-8 text-gray-800 flex items-center gap-3">
+                            <span className="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">✨</span>
+                            Create New Event
+                        </h2>
+                        <form onSubmit={handleCreateEvent} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div className="col-span-1 md:col-span-2">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Event Title</label>
+                                <input className="input-field bg-white/70" value={title} onChange={e => setTitle(e.target.value)} required placeholder="e.g. Summer Beach Party 🏖️" />
+                            </div>
+                            <div className="col-span-1 md:col-span-2">
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                                <textarea className="input-field bg-white/70 min-h-[120px]" value={description} onChange={e => setDescription(e.target.value)} placeholder="What's the plan? Add details..." />
+                            </div>
+                            <div>
+                                <label className="block text-sm font-semibold text-gray-700 mb-2">Possible Dates</label>
+                                <input className="input-field bg-white/70" placeholder="2024-12-25, 2024-12-26" onChange={e => setDateOptions(e.target.value.split(','))} />
+                                <p className="text-xs text-gray-400 mt-2 font-medium">Format: YYYY-MM-DD (Comma separated)</p>
+                            </div>
 
-                        <div className="col-span-1 md:col-span-2 mt-4 border-t border-gray-200 pt-4">
-                            <h3 className="text-lg font-semibold mb-4 text-gray-700">Add a Poll</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Question</label>
-                                    <input className="input-field" value={pollQuestion} onChange={e => setPollQuestion(e.target.value)} placeholder="e.g. Best time to meet?" />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-1">Options</label>
-                                    <input className="input-field" placeholder="Option 1, Option 2" onChange={e => setPollOptions(e.target.value.split(','))} />
-                                    <p className="text-xs text-gray-500 mt-1">Comma separated</p>
+                            <div className="col-span-1 md:col-span-2 mt-4 bg-gray-50/50 p-6 rounded-2xl border border-gray-100">
+                                <h3 className="text-lg font-bold mb-4 text-gray-700 flex items-center gap-2">
+                                    <span className="text-purple-500">📊</span> Add a Poll
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-600 mb-2">Question</label>
+                                        <input className="input-field bg-white" value={pollQuestion} onChange={e => setPollQuestion(e.target.value)} placeholder="e.g. Best time to meet?" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-600 mb-2">Options</label>
+                                        <input className="input-field bg-white" placeholder="Option 1, Option 2" onChange={e => setPollOptions(e.target.value.split(','))} />
+                                        <p className="text-xs text-gray-400 mt-2 font-medium">Comma separated</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className="col-span-1 md:col-span-2 flex justify-end mt-4">
-                            <button type="submit" className="btn-primary w-full md:w-auto px-8">Save Event</button>
-                        </div>
-                    </form>
+                            <div className="col-span-1 md:col-span-2 flex justify-end mt-4">
+                                <button type="submit" className="btn-primary w-full md:w-auto px-10 py-3 text-lg">🚀 Launch Event</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             )}
 
-            <div className="mb-16">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800 border-l-4 border-blue-600 pl-4">My Created Events</h2>
+            <div className="mb-16 animate-fade-in-up delay-100">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="h-10 w-1 bg-blue-600 rounded-full"></div>
+                    <h2 className="text-2xl font-bold text-gray-800">My Created Events</h2>
+                    <span className="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">{myEvents.length}</span>
+                </div>
+
                 {myEvents.length === 0 ? (
-                    <div className="text-center py-10 bg-white rounded-xl border border-dashed border-gray-300">
-                        <p className="text-gray-500">You haven't created any events yet.</p>
+                    <div className="text-center py-20 bg-white/60 rounded-3xl border border-dashed border-gray-300 backdrop-blur-sm">
+                        <div className="text-6xl mb-4 opacity-50">📅</div>
+                        <p className="text-gray-500 text-lg font-medium">You haven't created any events yet.</p>
+                        <button onClick={() => setShowCreate(true)} className="text-blue-600 font-semibold mt-2 hover:underline">Create your first event</button>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {myEvents.map(event => (
-                            <div key={event._id} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover relative group">
-                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div key={event._id} className="glass-panel p-6 rounded-2xl card-hover relative group border border-white/50">
+                                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                                     <button
                                         onClick={() => handleDelete(event._id)}
-                                        className="text-red-400 hover:text-red-600 p-1"
+                                        className="w-8 h-8 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-colors shadow-sm"
                                         title="Delete Event"
                                     >
-                                        🗑️
+                                        ✕
                                     </button>
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                                <p className="text-gray-600 mb-4 line-clamp-2">{event.description}</p>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3 pr-8">{event.title}</h3>
+                                <p className="text-gray-600 mb-6 line-clamp-2 text-sm leading-relaxed">{event.description}</p>
 
-                                <div className="mb-4">
-                                    <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Proposed Dates</h4>
+                                <div className="mb-6">
+                                    <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                        🗓️ Proposed Dates
+                                    </h4>
                                     <div className="flex flex-wrap gap-2">
                                         {event.dateOptions.map((d, idx) => (
-                                            <span key={idx} className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">
+                                            <span key={idx} className="bg-blue-50/80 text-blue-700 border border-blue-100 px-3 py-1.5 rounded-lg text-xs font-semibold backdrop-blur-sm">
                                                 {formatDate(d.date)}
                                             </span>
                                         ))}
@@ -178,29 +205,36 @@ const Dashboard = () => {
                                 </div>
 
                                 {event.poll && (
-                                    <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-                                        <h4 className="text-sm font-semibold text-gray-700 mb-2">{event.poll.question}</h4>
-                                        <div className="space-y-2">
+                                    <div className="mb-6 bg-gray-50/80 p-4 rounded-xl border border-gray-100">
+                                        <h4 className="text-sm font-bold text-gray-800 mb-3 flex items-center gap-2">
+                                            📊 {event.poll.question}
+                                        </h4>
+                                        <div className="space-y-3">
                                             {event.poll.options.map((opt, idx) => (
-                                                <div key={idx} className="flex justify-between text-sm">
-                                                    <span className="text-gray-600">{opt.optionText}</span>
-                                                    <span className="font-bold text-gray-900">{opt.votes} votes</span>
+                                                <div key={idx} className="relative pt-1">
+                                                    <div className="flex justify-between text-xs font-medium mb-1">
+                                                        <span className="text-gray-600">{opt.optionText}</span>
+                                                        <span className="text-gray-900">{opt.votes} votes</span>
+                                                    </div>
+                                                    <div className="overflow-hidden h-2 mb-1 text-xs flex rounded bg-gray-200">
+                                                        <div style={{ width: `${Math.min((opt.votes / (event.poll.totalVotes || 1)) * 100, 100)}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500 transition-all duration-500"></div>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
                                     </div>
                                 )}
 
-                                <div className="mt-auto pt-4 border-t border-gray-100">
+                                <div className="mt-auto pt-5 border-t border-gray-100/50">
                                     <div className="flex gap-2">
                                         <input
-                                            className="flex-1 p-2 border border-gray-200 rounded text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                                            className="flex-1 p-2.5 bg-gray-50/50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all"
                                             type="email"
                                             placeholder="Invite friend@email.com"
                                             id={`invite-${event._id}`}
                                         />
                                         <button
-                                            className="px-4 py-2 bg-gray-900 text-white rounded text-sm hover:bg-gray-800 transition-colors"
+                                            className="px-4 py-2 bg-gray-900 text-white rounded-lg text-sm font-medium hover:bg-gray-800 hover:shadow-lg transition-all active:scale-95"
                                             onClick={() => handleInvite(event._id, document.getElementById(`invite-${event._id}`).value)}
                                         >
                                             Invite
@@ -213,36 +247,42 @@ const Dashboard = () => {
                 )}
             </div>
 
-            <div className="mb-10">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800 border-l-4 border-purple-600 pl-4">Invited Events</h2>
+            <div className="mb-10 animate-fade-in-up delay-200">
+                <div className="flex items-center gap-4 mb-8">
+                    <div className="h-10 w-1 bg-purple-600 rounded-full"></div>
+                    <h2 className="text-2xl font-bold text-gray-800">Invited Events</h2>
+                    <span className="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">{invitedEvents.length}</span>
+                </div>
+
                 {invitedEvents.length === 0 ? (
-                    <div className="text-center py-10 bg-white rounded-xl border border-dashed border-gray-300">
-                        <p className="text-gray-500">No pending invitations.</p>
+                    <div className="text-center py-20 bg-white/60 rounded-3xl border border-dashed border-gray-300 backdrop-blur-sm">
+                        <div className="text-6xl mb-4 opacity-50">💌</div>
+                        <p className="text-gray-500 text-lg font-medium">No pending invitations.</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {invitedEvents.map(event => (
-                            <div key={event._id} className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 card-hover">
-                                <h3 className="text-xl font-bold text-gray-900 mb-2">{event.title}</h3>
-                                <p className="text-gray-600 mb-4">{event.description}</p>
+                            <div key={event._id} className="glass-panel p-6 rounded-2xl card-hover border border-purple-50">
+                                <h3 className="text-xl font-bold text-gray-900 mb-3">{event.title}</h3>
+                                <p className="text-gray-600 mb-6 text-sm">{event.description}</p>
 
-                                <div className="bg-purple-50 p-5 rounded-lg border border-purple-100">
-                                    <h4 className="text-sm font-bold text-purple-800 mb-3">
-                                        {event.poll?.question || "Poll"}
+                                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-5 rounded-xl border border-purple-100/50">
+                                    <h4 className="text-sm font-bold text-purple-900 mb-4 flex items-center gap-2">
+                                        <span>🗳️</span> {event.poll?.question || "Poll"}
                                     </h4>
-                                    <div className="space-y-2">
+                                    <div className="space-y-3">
                                         {event.poll?.options.map((opt, idx) => (
                                             <button
                                                 key={idx}
                                                 onClick={() => handleVote(event._id, idx)}
-                                                className="w-full text-left p-3 bg-white hover:bg-purple-100 border border-purple-200 rounded-md transition-all duration-200 flex justify-between items-center group"
+                                                className="w-full text-left p-3 bg-white/80 hover:bg-white hover:shadow-md border border-purple-100 rounded-xl transition-all duration-300 flex justify-between items-center group active:scale-[0.98]"
                                             >
-                                                <span className="text-gray-700 font-medium group-hover:text-purple-700">{opt.optionText}</span>
-                                                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">{opt.votes}</span>
+                                                <span className="text-gray-700 font-medium group-hover:text-purple-700 text-sm transition-colors">{opt.optionText}</span>
+                                                <span className="text-xs bg-purple-100 text-purple-700 px-2.5 py-1 rounded-full font-bold shadow-sm">{opt.votes}</span>
                                             </button>
                                         ))}
                                     </div>
-                                    <p className="text-center text-xs text-purple-400 mt-3">Click an option to vote</p>
+                                    <p className="text-center text-xs text-purple-400 mt-4 font-medium">Click an option to cast your vote</p>
                                 </div>
                             </div>
                         ))}
