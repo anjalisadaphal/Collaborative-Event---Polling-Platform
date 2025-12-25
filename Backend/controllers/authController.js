@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+// Authentication Logic
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
