@@ -44,7 +44,7 @@ const Register = () => {
                             onChange={(e) => setName(e.target.value)}
                             required
                             className="input-field"
-                            placeholder="John Doe"
+
                         />
                     </div>
                     <div>
