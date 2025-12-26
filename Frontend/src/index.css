@@ -3,34 +3,45 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+@theme {
+    --font-family-sans: 'Outfit', sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
     body {
-        @apply bg-gray-50 text-gray-800 antialiased;
         font-family: 'Outfit', sans-serif;
-        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        @apply bg-gray-50 text-gray-900 antialiased transition-colors duration-300;
+        @apply dark:bg-gray-950 dark:text-gray-100;
         min-height: 100vh;
     }
 }
 
 @layer components {
     .btn-primary {
-        @apply px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer;
+        @apply px-6 py-2.5 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+        @apply dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200;
     }
 
     .btn-secondary {
-        @apply px-6 py-3 bg-white text-gray-700 font-semibold rounded-xl border border-gray-100 shadow-sm hover:bg-gray-50 hover:text-blue-600 hover:border-blue-100 hover:shadow-md active:scale-95 transition-all duration-300 cursor-pointer;
+        @apply px-6 py-2.5 bg-white text-gray-900 font-semibold rounded-xl border border-gray-200 hover:bg-gray-50 hover:shadow-md hover:-translate-y-0.5 transition-all active:scale-95;
+        @apply dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 dark:hover:bg-gray-700;
     }
 
     .input-field {
-        @apply w-full p-4 border border-gray-200 rounded-xl bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all duration-300 placeholder-gray-400;
+        @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all;
+        @apply dark:bg-gray-800/50 dark:border-gray-700 dark:text-gray-100 dark:focus:ring-blue-400/20 dark:focus:border-blue-400 dark:placeholder-gray-500;
     }
 
     .glass-panel {
-        @apply bg-white/60 backdrop-blur-xl border border-white/40 shadow-2xl;
+        @apply bg-white/70 backdrop-blur-lg border border-white/50 shadow-xl;
+        @apply dark:bg-gray-900/70 dark:border-gray-800/50 dark:shadow-black/50;
     }
 
     .card-hover {
-        @apply hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-out;
+        @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-blue-100;
+        @apply dark:hover:border-gray-700 dark:hover:shadow-black/40;
     }
 }
 

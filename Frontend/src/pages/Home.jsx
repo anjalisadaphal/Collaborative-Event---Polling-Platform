@@ -16,7 +16,7 @@ const Home = () => {
                     <h1 className="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 mb-6 drop-shadow-sm animate-fade-in-up">
                         Plan Events Together.
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-100">
+                    <p className="text-xl md:text-2xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-100 dark:text-gray-300">
                         The easiest way to schedule events, poll your friends, and find the perfect time for everyone.
                     </p>
 
@@ -30,26 +30,26 @@ const Home = () => {
                     </div>
 
                     <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left animate-fade-in-up delay-300">
-                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group">
-                            <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600 text-3xl group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group dark:bg-gray-800/40 dark:border-gray-700 dark:hover:bg-gray-800/80">
+                            <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 text-blue-600 text-3xl group-hover:scale-110 transition-transform duration-300 dark:bg-blue-900/30 dark:text-blue-400">
                                 📅
                             </div>
-                            <h3 className="font-bold text-xl mb-3 text-gray-800">Smart Scheduling</h3>
-                            <p className="text-gray-600 leading-relaxed">Propose multiple dates and let your group vote for the best one.</p>
+                            <h3 className="font-bold text-xl mb-3 text-gray-800 dark:text-white">Smart Scheduling</h3>
+                            <p className="text-gray-600 leading-relaxed dark:text-gray-400">Propose multiple dates and let your group vote for the best one.</p>
                         </div>
-                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group">
-                            <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6 text-purple-600 text-3xl group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group dark:bg-gray-800/40 dark:border-gray-700 dark:hover:bg-gray-800/80">
+                            <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-6 text-purple-600 text-3xl group-hover:scale-110 transition-transform duration-300 dark:bg-purple-900/30 dark:text-purple-400">
                                 📊
                             </div>
-                            <h3 className="font-bold text-xl mb-3 text-gray-800">Real-time Polls</h3>
-                            <p className="text-gray-600 leading-relaxed">Instantly see who voted for what and make decisions faster.</p>
+                            <h3 className="font-bold text-xl mb-3 text-gray-800 dark:text-white">Real-time Polls</h3>
+                            <p className="text-gray-600 leading-relaxed dark:text-gray-400">Instantly see who voted for what and make decisions faster.</p>
                         </div>
-                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group">
-                            <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 text-3xl group-hover:scale-110 transition-transform duration-300">
+                        <div className="p-8 bg-white/40 rounded-2xl border border-white/60 hover:bg-white/80 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl group dark:bg-gray-800/40 dark:border-gray-700 dark:hover:bg-gray-800/80">
+                            <div className="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center mb-6 text-indigo-600 text-3xl group-hover:scale-110 transition-transform duration-300 dark:bg-indigo-900/30 dark:text-indigo-400">
                                 💌
                             </div>
-                            <h3 className="font-bold text-xl mb-3 text-gray-800">Easy Invites</h3>
-                            <p className="text-gray-600 leading-relaxed">Invite friends via email to join your private event dashboard.</p>
+                            <h3 className="font-bold text-xl mb-3 text-gray-800 dark:text-white">Easy Invites</h3>
+                            <p className="text-gray-600 leading-relaxed dark:text-gray-400">Invite friends via email to join your private event dashboard.</p>
                         </div>
                     </div>
                 </div>

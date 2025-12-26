@@ -30,25 +30,25 @@ const Register = () => {
             <form onSubmit={handleSubmit} className="glass-panel p-10 rounded-3xl w-full max-w-md mx-4 relative z-10 animate-fade-in-up">
                 <div className="mb-10 text-center">
                     <h2 className="text-4xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-rose-600">Create Account</h2>
-                    <p className="text-gray-500">Join us to start planning events.</p>
+                    <p className="text-gray-500 dark:text-gray-400">Join us to start planning events.</p>
                 </div>
 
                 {error && <div className="bg-red-50 text-red-500 p-4 rounded-xl mb-6 text-sm border border-red-100 flex items-center gap-2 animate-fade-in-up">⚠️ {error}</div>}
 
                 <div className="space-y-5">
                     <div>
-                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Full Name</label>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1 dark:text-gray-300">Full Name</label>
                         <input
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
                             className="input-field"
-
+                            placeholder="John Doe"
                         />
                     </div>
                     <div>
-                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1 dark:text-gray-300">Email Address</label>
                         <input
                             type="email"
                             value={email}
@@ -59,7 +59,7 @@ const Register = () => {
                         />
                     </div>
                     <div>
-                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Password</label>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1 dark:text-gray-300">Password</label>
                         <input
                             type="password"
                             value={password}
@@ -73,8 +73,8 @@ const Register = () => {
 
                 <button type="submit" className="btn-primary w-full mt-8 shadow-xl shadow-pink-500/20 bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 py-4 text-lg">Sign Up</button>
 
-                <p className="mt-8 text-center text-sm text-gray-600">
-                    Already have an account? <Link to="/login" className="text-pink-600 font-bold hover:text-pink-700 transition-colors">Log In</Link>
+                <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Already have an account? <Link to="/login" className="text-pink-600 font-bold hover:text-pink-700 transition-colors dark:text-pink-400 dark:hover:text-pink-300">Log In</Link>
                 </p>
             </form>
         </div>

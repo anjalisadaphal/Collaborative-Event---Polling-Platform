@@ -29,14 +29,14 @@ const Login = () => {
             <form onSubmit={handleSubmit} className="glass-panel p-10 rounded-3xl w-full max-w-md mx-4 relative z-10 animate-fade-in-up">
                 <div className="mb-10 text-center">
                     <h2 className="text-4xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Welcome Back</h2>
-                    <p className="text-gray-500">Please enter your details to sign in.</p>
+                    <p className="text-gray-500 dark:text-gray-400">Please enter your details to sign in.</p>
                 </div>
 
                 {error && <div className="bg-red-50 text-red-500 p-4 rounded-xl mb-6 text-sm border border-red-100 flex items-center gap-2 animate-fade-in-up">⚠️ {error}</div>}
 
                 <div className="space-y-6">
                     <div>
-                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Email Address</label>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1 dark:text-gray-300">Email Address</label>
                         <input
                             type="email"
                             value={email}
@@ -47,7 +47,7 @@ const Login = () => {
                         />
                     </div>
                     <div>
-                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1">Password</label>
+                        <label className="block mb-2 text-sm font-semibold text-gray-700 ml-1 dark:text-gray-300">Password</label>
                         <input
                             type="password"
                             value={password}
@@ -61,8 +61,8 @@ const Login = () => {
 
                 <button type="submit" className="btn-primary w-full mt-8 shadow-xl shadow-blue-500/20 py-4 text-lg">Sign In</button>
 
-                <p className="mt-8 text-center text-sm text-gray-600">
-                    Don't have an account? <Link to="/register" className="text-blue-600 font-bold hover:text-blue-700 transition-colors">Create account</Link>
+                <p className="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+                    Don't have an account? <Link to="/register" className="text-blue-600 font-bold hover:text-blue-700 transition-colors dark:text-blue-400 dark:hover:text-blue-300">Create account</Link>
                 </p>
             </form>
         </div>
